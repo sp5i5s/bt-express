@@ -1,6 +1,13 @@
 class index{
     constructor( req,res ){
-        res.send("index");
+        this.res = res;
+        bt.log('index init');
+    }
+    index(){
+        this.res.send('index');
+    }
+    get(){
+        this.res.send('index get');
     }
 }
 
