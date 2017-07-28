@@ -1,15 +1,12 @@
 require('./utils');
+var path = require('path');
 var config = require('./config/system');
 var route = require("./route");
-var path = require('path');
+var db = require('./library/db/build');
+
 
 // Controller堆栈
 var _c_modules = {};
-// 将配置文件赋于全局
-global._config = config;
-global._config.system_path = __dirname;
-global._config.base_path =  path.resolve('./');
-global._config.controller_path = path.resolve('app',config._controllers);
 
 // 获取所有控制层的主执行文件
 var list = bt.get_folder_files( _config.controller_path );
