@@ -4,15 +4,9 @@ class list{
         this.res = res;
     }
     index(){
-         let list = {
-            list : [
-                {name : 'brandon'},
-                {name : 'tony'},
-                {name : 'lily'}
-            ],
-            user : 'welcome'
-        }
-        this.res.render('login', list);
+        db.query.get('SELECT * from cloud_news',(error,result,filed)=>{
+            this.res.render('login', {list : result});
+        });
     }
 }
 

@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 
 var utils = function(){}
 
@@ -12,7 +13,7 @@ utils.prototype = {
         var floder  = [];
         var files = fs.readdirSync( globPath );
         for(let file of files){
-            floder.push( globPath + '\\' + file );
+            floder.push( globPath + path.sep + file );
         }
         return floder;
     }

@@ -12,8 +12,7 @@ var _c_modules = {};
 var list = bt.get_folder_files( _config.controller_path );
 for( let info of list ){
     // 缓存执行实例
-    _c_modules[ info.replace( _config.controller_path ,'').replace('.js','').replace('\\','') ] = info;
+    _c_modules[ info.replace( _config.controller_path ,'').replace('.js','').replace( path.sep ,'') ] = info;
 }
-//bt.log( _c_modules );
 // 执行Route控制
 route.init( _c_modules );

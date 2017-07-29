@@ -14,6 +14,8 @@ var config = {
 
 // 系统配置
 global._config = config;
+// DB配置
+global._config.db = {};
 // App配置,包括应用、数据库、缓存等
 global._config.options = options;
 // 项目根目录
