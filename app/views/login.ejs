@@ -1,8 +1,10 @@
 <% include common/header %>
 
     
-    <% list.forEach(function(info){ %>
-        <li><%= info.title%></li>
-    <% })%>
+    <ol class="news">
+        <% list.forEach(function(info){ %>
+            <li><a href="list/info?id=<%= info.id%>"><%= info.title%></a></li>
+        <% })%>
+    </ol>
 
 <% include common/footer %>

@@ -1,12 +1,13 @@
-class list{
-    constructor( req,res ){
-        bt.log('list init');
-        this.res = res;
-    }
+var think = require( _config.think );
+
+class list extends think{
     index(){
         db.query.get('SELECT * from cloud_news',(error,result,filed)=>{
-            this.res.render('login', {list : result});
+            response.render('login', {list : result});
         });
+    }
+    info(){
+        response.send( request.query );
     }
 }
 

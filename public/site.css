@@ -1,0 +1,15 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px; }
+
+.wrap {
+  width: 600px;
+  height: 100%;
+  background: #ccc;
+  margin: 50px auto;
+  padding: 10px; }
+  .wrap ol.news li {
+    line-height: 1.5; }
+    .wrap ol.news li a {
+      color: #000; }

@@ -1,3 +1,5 @@
+// db查询基类
+
 class query{
     constructor(){
         

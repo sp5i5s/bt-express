@@ -9,9 +9,13 @@ class connection{
         this.connection = _conn;
     }
     constructor(){
-        bt.log(_config);
         this.conn = mysql.createConnection(_config.db.config);
-        this.conn.connect();
+        this.conn.connect(error =>{
+            if( error ){
+                bt.log('mysql连接异常' + error);
+                return;
+            }
+        });
     }
 }
 

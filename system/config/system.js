@@ -24,5 +24,7 @@ global._config.system_path = path.resolve('./');;
 global._config.base_path = path.resolve('app');
 // App下Controll 目录
 global._config.controller_path = path.resolve('app',config._controllers);
+// Think系统Controller路径
+global._config.think = _config.system_path + '/system/think'; 
 
 module.exports = config;

@@ -1,13 +1,17 @@
-class index{
-    constructor( req,res ){
-        this.res = res;
-        bt.log('index init');
+var think = require( _config.think );
+
+class index extends think{
+    constructor(){
+        super();
     }
     index(){
-        this.res.send('index');
+        response.send('index');
     }
     get(){
-        this.res.send('index get');
+        response.send('index get');
+    }
+    set(){
+        response.send('index set');
     }
 }
 
