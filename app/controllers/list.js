@@ -8,8 +8,7 @@ class list extends think{
         });;
     }
     info(){
-        //response.send(request.query.id)
-        api.info(request.query.id,(result,error)=>{
+        api.info(this._get.id,(result,error)=>{
             this.render('index/info',{info : result});
         });
     }
