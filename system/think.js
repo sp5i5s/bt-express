@@ -12,6 +12,10 @@ class think{
     get response(){
         return response;
     }
+
+    render(){
+        return response.render( ...arguments );
+    }
 }
 
 module.exports = think;

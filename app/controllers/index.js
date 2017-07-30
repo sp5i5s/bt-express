@@ -11,7 +11,8 @@ class index extends think{
         response.send('index get');
     }
     set(){
-        response.send('index set');
+        //response.send('index set!');
+        response.json(JSON.stringify(request.params));
     }
 }
 

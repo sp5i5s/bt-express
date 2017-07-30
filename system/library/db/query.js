@@ -6,7 +6,7 @@ class query{
     }
     get(query,func){
         _config.db.conn.query(query, function (error, result, fields) {
-            func(error,result,fields);
+            func(error,(result.length ===1 ? result[0] : result),fields);
         });
     }
 }

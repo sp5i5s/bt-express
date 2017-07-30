@@ -7,7 +7,7 @@ var favicon = require('express-favicon');
 
 // app Config
 app.use('/public',express.static('public'));
-// app.engine('.html', ejs.__express);
+// app.engine('x.html', ejs.__express);
 // app.use(favicon( path.resolve('public/favicon.ico') )); 
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, '../../app') + '/views' );
