@@ -19,4 +19,4 @@ utils.prototype = {
     }
 }
 
-global.bt = new utils();
+global.utils = new utils();

@@ -42,6 +42,10 @@ class query{
         this._where = _whereArray.join(' and ');
         return this;
     }
+    order(__order){
+        this._order = __order;
+        return this;
+    }
     // 链式快捷选择字段
     select(){
         let fileds = [ '*' ],
@@ -59,11 +63,14 @@ class query{
                 type = item;
             }
         }
-        let _where = '';
+        let _where = '',_order = '';
         if(this._where){
             _where = ` where ${this._where}`;
         }
-        this.sql = `select ${fileds.join(',')} from ${this._table} ${_where}`;
+        if(this._order){
+            _order = `order by ${this._order}`;
+        }
+        this.sql = `select ${fileds.join(',')} from ${this._table} ${_where} ${_order}`;
 
         return this.get(this.sql,func,type);
     }

@@ -3,12 +3,9 @@ var api = require('../modles/index');
 
 class list extends think{
     index(){
-        // api.list((result,error)=>{
-        //     this.render('index/list', {list : result});
-        // });;
-        db.query.table('cloud_school').where({type : 1}).select((result)=>{
+        api.list((result)=>{
             this.render('index/list', {list : result});
-        })
+        });
     }
     info(){
         api.info(this._get.id,(result)=>{

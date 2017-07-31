@@ -7,8 +7,7 @@
     "dev": "webpack-dev-server --inline",
     "build": "webpack -p",
     "watch:css": "onchange 'public/*.scss' -- webpack",
-    "watch:js": "onchange 'app/*/*.js' -- node app.js",
-    "watch:js2": "onchange 'system/*/*.js' -- node app.js"
+    "watch": "onchange 'app/*/*.js' -- node app.js"
   },
   "author": "",
   "license": "ISC",

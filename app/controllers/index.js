@@ -10,6 +10,7 @@ class index extends think{
     post(){
         this._post(function(post){
             response.send(post.name);
+            bt.log("OKddd");
         })
     }
     get(){
