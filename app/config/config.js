@@ -5,7 +5,8 @@ let config = {
         database : 'ysy_cloud',
         user : 'root',
         password : ''
-    }
+    },
+    route_level : 1
 }
 
 module.exports = config;

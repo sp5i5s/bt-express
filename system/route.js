@@ -1,5 +1,6 @@
+// Controll的多级控制
+
 var server = require("./config/listen");
-// Controll中action的控制
 var task = require('./task');
 
 var route = {
@@ -27,21 +28,37 @@ var route = {
         if(req.url === '/favicon.ico'){
             return;
         }
+        // url开始
         if(req.params){
-            if( req.params[0].replace('/','') != '' ){
-                params.controller = req.params[0].replace('/','');
+            // 去除前尾/
+            let url = req.params[0];
+            if(url.substring(0,1) === '/'){
+                url = url.substring(1);
+            }
+            if(url.substring(url.length -1) === '/'){
+                url = url.substring(0,url.length - 1);
+            }
+            if(! url.is_empty()){
+                // 替换/为_的特征
+                let con =  bt.string.replace(url,/\//,'_').split('_');
+                // 判断多层路由和路由是否自带action
+                let _task = [];
+                if(con.length > _config.options.route_level){
+                    for(let i =0;i<con.length - 1 ;i++){
+                        _task.push(con[i]);
+                    }
+                    params.controller = _task.join('_');;
+                    params.action = con[ con.length-1 ];
+                }
+                else if( con.length === _config.options.route_level ){
+                    for(let item of con){
+                        _task.push( item );
+                    }
+                    params.controller = _task.join('_');
+                }
             }
         }
-        // 如果URL结尾带个/，将去除
-        if( params.controller.substring(params.controller.length -1) === '/'){
-            params.controller = params.controller.substring(0,params.controller.length -1)
-        }
-        // 如果存在自带action，将带入
-        let _params_array = params.controller.split('/');
-        if(_params_array.length > 1){
-            params.controller = _params_array[0]
-            params.action = _params_array[1];
-        }
+        // bt.log(params);
         // 判断路由地址是否在C_Modules堆栈中
         if(params.controller in this.modules){
             let controller = require( this.modules[ params.controller ] );
