@@ -9,7 +9,9 @@ var config = {
     // 默认执行的control
     _default_controller : 'index',
     // 默认执行的action
-    _default_action : 'index'
+    _default_action : 'index',
+    // 默认执行的View文件名
+    _default_view : 'views'
 }
 
 // 系统配置

@@ -10,7 +10,7 @@ app.use('/public',express.static('public'));
 // app.engine('x.html', ejs.__express);
 // app.use(favicon( path.resolve('public/favicon.ico') )); 
 app.set('view engine', 'ejs');
-app.set('views', path.resolve(__dirname, '../../app') + '/views' );
+app.set('views', path.resolve(__dirname, '../../app',_config._default_view)  );
 
 var server = app.listen(8080, function () {
     var host = server.address().address;
