@@ -6,7 +6,8 @@ let config = {
         user : 'root',
         password : ''
     },
-    route_level : 1
+    // Controller目录层级
+    controller_level : 1
 }
 
 module.exports = config;

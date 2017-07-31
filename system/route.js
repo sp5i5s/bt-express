@@ -43,14 +43,14 @@ var route = {
                 let con =  bt.string.replace(url,/\//,'_').split('_');
                 // 判断多层路由和路由是否自带action
                 let _task = [];
-                if(con.length > _config.options.route_level){
+                if(con.length > _config.options.controller_level){
                     for(let i =0;i<con.length - 1 ;i++){
                         _task.push(con[i]);
                     }
                     params.controller = _task.join('_');;
                     params.action = con[ con.length-1 ];
                 }
-                else if( con.length === _config.options.route_level ){
+                else if( con.length === _config.options.controller_level ){
                     for(let item of con){
                         _task.push( item );
                     }
@@ -58,14 +58,16 @@ var route = {
                 }
             }
         }
-        // bt.log(params);
         // 判断路由地址是否在C_Modules堆栈中
         if(params.controller in this.modules){
             let controller = require( this.modules[ params.controller ] );
             task.listen( { params : params ,controller_class : controller , req : req , res : res } );
         }else{
             // 未知路由 404
-            res.send(`<html><body><h1>404</h1><p>无法找到该面页,请确认路由地址是否正确</p></body></html>`);
+            let body = '<html><body><h1>404</h1><p>无法找到该面页,请确认路由地址是否正确</p></body></html>';
+            res.writeHead(404, {'Content-type' : 'text/html;charset=UTF-8'});
+            res.write(body);
+            res.end();
         }
     }
 }
