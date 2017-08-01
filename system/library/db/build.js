@@ -10,7 +10,7 @@ if( 'options' in _config){
         global._config.db.config = _config.options.database;
         global._config.db.conn = mysql().conn;
         // 查询类构造
-        global.db.query = query();
-        global.db.execute = execute();
+        global.db.query = new query();
+        global.db.execute = new execute();
     }
 }

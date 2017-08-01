@@ -2,7 +2,6 @@
 
 class query{
     constructor(){
-        
     }
     get(query,func,type = 'list'){
         _config.db.conn.query(query, function (error, result, fields) {
@@ -70,24 +69,14 @@ class query{
         if(this._order){
             _order = `order by ${this._order}`;
         }
-        this.sql = `select ${fileds.join(',')} from ${this._table} ${_where} ${_order}`;
+        this._sql = `select ${fileds.join(',')} from ${this._table} ${_where} ${_order}`;
 
-        return this.get(this.sql,func,type);
+        return this.get(this._sql,func,type);
     }
     // 输出最后一次执行的Sql
     get lastsql(){
-        bt.log(this.sql);
+        return this._sql;
     }
 }
 
-// 数据库连接单例
-var instance = null;
-var get_instance = function(){
-    if(instance == null){
-        instance = new query();
-    }
-
-    return instance;
-}
-
-module.exports =  get_instance;
+module.exports =  query;

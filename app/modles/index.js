@@ -8,12 +8,12 @@ api.list = function(func){
     // where 指定where语句并支持多维
     // order 指定排序字段
     // select 指定字段(默认为*)，输出结果集
-    db.query.table('cloud_school').where({vip : 0}).order('id desc').select(['id','school_name'],(result)=>{
+    db.query.table('cloud_news').order('id desc').select(['id','title'],(result)=>{
         func(result);
     })
 };
 api.info = function(id,func){
-    db.query.table('cloud_school').where({id : id,type : 2}).select((result)=>{
+    db.query.table('cloud_news').where({id : id}).select((result)=>{
         func(result);
     },'info')
 }

@@ -1,10 +1,9 @@
 // db执行基类
+var query = require('./query');
 
-class execute{
-    // 链式快捷选择表
-    table(tableName){
-        this._table = tableName;
-        return this;
+class execute extends query{
+    constructor(){
+        super();
     }
     // 保存单个或多个数据实体
     save(data,func){
@@ -39,11 +38,11 @@ class execute{
                 }
                 value_array.push( `(${values.substring(0,values.length - 1) })`);
             }
-            // 生成insert语句
-            let sql = ` insert into ${this._table}(${key_array.join(',')})values${value_array.join(',')}`;
+            // 生成insert语句并将语写入query中的lastsql
+            let sql = db.query._sql = ` insert into ${this._table}(${key_array.join(',')})values${value_array.join(',')}`;
             _config.db.conn.query(sql, (error, result, fields) => {
                 this._insertId = result.insertId;
-                func(result);
+                func(result,error);
             });
         }else{
             throw('class execute : save format error!');
@@ -55,14 +54,4 @@ class execute{
     }
 }
 
-// 数据库连接单例
-var instance = null;
-var get_instance = function(){
-    if(instance == null){
-        instance = new execute();
-    }
-
-    return instance;
-}
-
-module.exports =  get_instance;
+module.exports =  execute;

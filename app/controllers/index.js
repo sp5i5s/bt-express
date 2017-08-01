@@ -10,7 +10,8 @@ class index extends think{
             {title : '李四'}
         ]
         db.execute.table('cloud_news').save(data,(result)=>{
-            bt.log(db.execute.insertId);
+            // bt.log(db.execute.insertId)
+            // bt.log(db.query.lastsql);
         });
         this.render('index/index');
     }
