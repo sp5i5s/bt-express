@@ -7,14 +7,14 @@
 ├── bin                         #启动脚本
 ├── controller                  #controller
 ├── model                       #model
-├── app                 		  #用户应用目录
+├── app                         #用户应用目录
 │   ├── config                 
-│   │   ├── config.js		#用户配置文件
-│   ├── controllers			#控制层目录
-│   ├── modules				#数据层目录
+│   │   ├── config.js		   #用户配置文件
+│   ├── controllers				#控制层目录
+│   ├── modules					#数据层目录
 │   ├── views					#视图层目录
-├── public                    #资源目录,scss,js,jpg
-└── system                    #bt-express框架目录
+├── public						 #资源目录,scss,js,jpg
+└── system						 #bt-express框架目录
 ```
     
 Features
