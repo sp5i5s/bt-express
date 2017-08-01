@@ -23,7 +23,8 @@
 5. 配置的MVC目录名称
 6. 独立封装Mysql操作类
 7. Query支持链式查询
-8. 入全局utils工具
+8. ejs模板引擎
+9. 入全局utils工具
 
 ## 实例
  Contrller操作类demo
@@ -71,4 +72,12 @@ api.info = function(id,func){
     },'info')
 }
 module.exports = api; 
+```
+Views ejs模板引擎
+```
+ <ol class="news">
+        <% list.forEach(function(info){ %>
+            <li><a href="list/info?id=<%= info.id%>"><%= info.school_name%></a></li>
+        <% })%>
+ </ol>
 ```
