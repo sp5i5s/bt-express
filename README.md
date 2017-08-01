@@ -26,7 +26,49 @@
 8. 入全局utils工具
 
 ## 实例
- Contrller
- ···
- 
- ···
+ Contrller操作类demo
+```
+ // 引入系统超类
+var think = require( _config.think );
+// index 控制器
+class index extends think{
+    // 构造方法并执行系统think超类
+    constructor(){
+        super();
+    }
+    // 默认action，可通过系统配置修改
+    index(){
+        // view渲染
+        this.render('index/index');;
+    }
+    // post action
+    post(){
+        // 利用系统方法获取post
+        this._post(function(post){
+            response.send(post.name);
+        })
+    }
+}
+module.exports = index;
+```
+Models 操作类demo
+```
+var api = function(){};
+api.list = function(func){
+    // 在配置完DB参数后，将自动赋予全局db.query操作
+    // db.query支持链式查询
+    // table 指定查询表
+    // where 指定where语句并支持多维
+    // order 指定排序字段
+    // select 指定字段(默认为*)，输出结果集
+    db.query.table('cloud_school').where({vip : 0}).order('id desc').select(['id','school_name'],(result)=>{
+        func(result);
+    })
+};
+api.info = function(id,func){
+    db.query.table('cloud_school').where({id : id,type : 2}).select((result)=>{
+        func(result);
+    },'info')
+}
+module.exports = api; 
+```
