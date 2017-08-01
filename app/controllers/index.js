@@ -5,12 +5,18 @@ class index extends think{
         super();
     }
     index(){
-        this.render('index/index');;
+        let data = [
+            {title : '张三'},
+            {title : '李四'}
+        ]
+        db.execute.table('cloud_news').save(data,(result)=>{
+            bt.log(db.execute.insertId);
+        });
+        this.render('index/index');
     }
     post(){
         this._post(function(post){
             response.send(post.name);
-            bt.log("OKddd");
         })
     }
     get(){

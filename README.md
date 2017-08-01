@@ -24,7 +24,7 @@
 6. 独立封装Mysql操作类
 7. Query支持链式查询
 8. ejs模板引擎
-9. 入全局utils工具
+9. 引入全局utils工具
 
 ## 实例
  Contrller操作类demo
@@ -52,7 +52,7 @@ class index extends think{
 }
 module.exports = index;
 ```
-Models 操作类demo
+Model操作类demo
 ```
 var api = function(){};
 api.list = function(func){

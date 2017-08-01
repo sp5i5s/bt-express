@@ -1,6 +1,7 @@
 //DB配置的基本检查
 var mysql = require('./connection');
 var query = require('./query');
+var execute = require('./execute');
 
 if( 'options' in _config){
     if( 'database' in _config.options){
@@ -10,5 +11,6 @@ if( 'options' in _config){
         global._config.db.conn = mysql().conn;
         // 查询类构造
         global.db.query = query();
+        global.db.execute = execute();
     }
 }
