@@ -1,6 +1,3 @@
-[![npm version](https://badge.fury.io/js/thinknode.svg)](https://badge.fury.io/js/thinknode)
-[![Build Status](https://travis-ci.org/richenlin/thinknode.svg?branch=master)](https://travis-ci.org/richenlin/thinknode)
-[![Dependency Status](https://david-dm.org/richenlin/thinknode.svg)](https://david-dm.org/richenlin/thinknode)
 ### bt-express
 基于Express实现的一套轻量级的MVC框架
 ### 目录结构
@@ -17,15 +14,16 @@
 ```
     
 
-### 特色
+### 特性
+-----
 
-* OOP的编码方式
-* MVC代码风格
-* 自定义DB配置选项
-* 可配置controllers(路由)多层嵌套
-* 可配置的MVC目录名称
-* 独立封装Mysql操作类
-* Query支持链式查询
-* 引入全局utils工具
+1. OOP的编码方式
+2. MVC代码风格
+3. 自定义DB配置选项
+4. 可配置controllers(路由)多层嵌套
+5. 配置的MVC目录名称
+6. 独立封装Mysql操作类
+7. Query支持链式查询
+8. 入全局utils工具
 
 
