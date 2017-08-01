@@ -48,6 +48,29 @@ class execute extends query{
             throw('class execute : save format error!');
         }
     }
+    // 更新数据
+    update(data,func){
+        if(Object.prototype.toString.call(data) === '[object Object]'){
+            let value_array = [];
+            for(let value in data){
+                value_array.push( `${value} = ${(()=>{
+                    if(typeof value === 'number'){
+                            return data[value];
+                        }else{
+                            return `'${data[value]}'`;
+                        }
+                })()}` );
+            };
+            let _where = '';
+            if(this._where){
+                _where = ' where ' + this._where;
+            }
+            let sql = db.query._sql =  = `updat ${this._table} set ${value_array.join(',')} ${_where}`;
+            _config.db.conn.query(sql, (error, result, fields) => {
+                func(result,error);
+            });
+        }
+    }
     // 返回最后一次写入数据的ID
     get insertId(){
         return this._insertId;

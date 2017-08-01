@@ -16,6 +16,9 @@ class query{
             }
         });
     }
+    reset_query(){
+        this._table = this._where = this._order = null;
+    }
     info(query,func){
         return get(query,func,'info');
     }
@@ -26,6 +29,7 @@ class query{
     }
     // 链式Where条件带入
     where(where){
+        bt.log(where);
         this._where = null;
         // 条件字段的拼接
         let _whereArray = [];
@@ -70,7 +74,8 @@ class query{
             _order = `order by ${this._order}`;
         }
         this._sql = `select ${fileds.join(',')} from ${this._table} ${_where} ${_order}`;
-
+        // 重置query参数
+        this.reset_query();
         return this.get(this._sql,func,type);
     }
     // 输出最后一次执行的Sql
