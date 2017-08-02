@@ -11,6 +11,7 @@ if( 'options' in _config){
         global._config.db.conn = mysql().conn;
         // 查询类构造
         global.db.query = new query();
+        // 执行类构造
         global.db.execute = new execute();
     }
 }

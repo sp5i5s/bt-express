@@ -42,6 +42,7 @@ class execute extends query{
             let sql = db.query._sql = ` insert into ${this._table}(${key_array.join(',')})values${value_array.join(',')}`;
             _config.db.conn.query(sql, (error, result, fields) => {
                 this._insertId = result.insertId;
+                result.status = this._insertId > 0 ? true : false;
                 func(result,error);
             });
         }else{
@@ -65,8 +66,9 @@ class execute extends query{
             if(this._where){
                 _where = ' where ' + this._where;
             }
-            let sql = db.query._sql =  = `updat ${this._table} set ${value_array.join(',')} ${_where}`;
+            let sql = db.query._sql =  `update ${this._table} set ${value_array.join(',')} ${_where}`;
             _config.db.conn.query(sql, (error, result, fields) => {
+                result.status = result.affectedRows > 0 ? true : false;
                 func(result,error);
             });
         }

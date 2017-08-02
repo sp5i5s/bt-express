@@ -35,7 +35,7 @@ class query{
         let _whereArray = [];
         for(let _query in where){
             _whereArray.push( `${_query} = ${(function(){
-                if(typeof where[_query] === 'Number'){
+                if(typeof where[_query] === 'number'){
                     return where[_query];
                 }else{
                     return `'${where[_query]}'`;
@@ -46,7 +46,11 @@ class query{
         return this;
     }
     order(__order){
-        this._order = __order;
+        this._order = `order by ${__order}`;
+        return this;
+    }
+    limit(limit){
+        this._limit = `limit ${limit}`;
         return this;
     }
     // 链式快捷选择字段
@@ -70,10 +74,7 @@ class query{
         if(this._where){
             _where = ` where ${this._where}`;
         }
-        if(this._order){
-            _order = `order by ${this._order}`;
-        }
-        this._sql = `select ${fileds.join(',')} from ${this._table} ${_where} ${_order}`;
+        this._sql = `select ${fileds.join(',')} from ${this._table} ${_where} ${this._order} ${this._limit}`;
         // 重置query参数
         this.reset_query();
         return this.get(this._sql,func,type);

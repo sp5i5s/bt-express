@@ -8,7 +8,7 @@ api.list = function(func){
     // where 指定where语句并支持多维
     // order 指定排序字段
     // select 指定字段(默认为*)，输出结果集
-    db.query.table('cloud_news').order('id desc').select(['id','title'],(result)=>{
+    db.query.table('cloud_news').order('id desc').limit(10).select(['id','title'],(result)=>{
         func(result);
     })
 };
