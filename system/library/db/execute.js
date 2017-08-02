@@ -64,7 +64,7 @@ class execute extends query{
             };
             let _where = '';
             if(this._where){
-                _where = ' where ' + this._where;
+                _where = this._where;
             }
             let sql = db.query._sql =  `update ${this._table} set ${value_array.join(',')} ${_where}`;
             _config.db.conn.query(sql, (error, result, fields) => {
@@ -72,6 +72,18 @@ class execute extends query{
                 func(result,error);
             });
         }
+    }
+    // 删除数据
+    delete(func){
+        let _where = '';
+        if(this._where){
+            _where = this._where;
+        }
+        let sql = db.query._sql =  `delete from  ${this._table} ${_where}`;
+        _config.db.conn.query(sql, (error, result, fields) => {
+            result.status = result.affectedRows > 0 ? true : false;
+            func(result,error);
+        });
     }
     // 返回最后一次写入数据的ID
     get insertId(){

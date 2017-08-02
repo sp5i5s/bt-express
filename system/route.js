@@ -68,6 +68,7 @@ var route = {
             res.writeHead(404, {'Content-type' : 'text/html;charset=UTF-8'});
             res.write(body);
             res.end();
+            return;
         }
     }
 }

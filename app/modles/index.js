@@ -13,7 +13,7 @@ api.list = function(func){
     })
 };
 api.info = function(id,func){
-    db.query.table('cloud_news').where({id : id}).select((result)=>{
+    db.query.table('cloud_news').where({id : `= ${id}`}).select((result)=>{
         func(result);
     },'info')
 }
