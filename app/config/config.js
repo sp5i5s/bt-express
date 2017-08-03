@@ -6,6 +6,10 @@ let config = {
         user : 'root',
         password : ''
     },
+    redis : {
+        server : '127.0.0.1',
+        port : 6379
+    },
     // Controller目录层级
     controller_level : 1
 }

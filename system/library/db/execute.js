@@ -42,6 +42,7 @@ class execute extends query{
             let sql = db.query._sql = ` insert into ${this._table}(${key_array.join(',')})values${value_array.join(',')}`;
             _config.db.conn.query(sql, (error, result, fields) => {
                 this._insertId = result.insertId;
+                result.status = this._insertId > 0 ? true : false;
                 func(result,error);
             });
         }else{
@@ -63,13 +64,30 @@ class execute extends query{
             };
             let _where = '';
             if(this._where){
-                _where = ' where ' + this._where;
+                _where = this._where;
             }
+<<<<<<< HEAD
             let sql = db.query._sql =  `updat ${this._table} set ${value_array.join(',')} ${_where}`;
+=======
+            let sql = db.query._sql =  `update ${this._table} set ${value_array.join(',')} ${_where}`;
+>>>>>>> 6b3c7385ba293b6343548cc9d4c87b82c1792780
             _config.db.conn.query(sql, (error, result, fields) => {
+                result.status = result.affectedRows > 0 ? true : false;
                 func(result,error);
             });
         }
+    }
+    // 删除数据
+    delete(func){
+        let _where = '';
+        if(this._where){
+            _where = this._where;
+        }
+        let sql = db.query._sql =  `delete from  ${this._table} ${_where}`;
+        _config.db.conn.query(sql, (error, result, fields) => {
+            result.status = result.affectedRows > 0 ? true : false;
+            func(result,error);
+        });
     }
     // 返回最后一次写入数据的ID
     get insertId(){

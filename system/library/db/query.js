@@ -2,6 +2,7 @@
 
 class query{
     constructor(){
+        this._table = this._where = this._order = this._limit = '';
     }
     get(query,func,type = 'list'){
         _config.db.conn.query(query, function (error, result, fields) {
@@ -16,9 +17,6 @@ class query{
             }
         });
     }
-    reset_query(){
-        this._table = this._where = this._order = null;
-    }
     info(query,func){
         return get(query,func,'info');
     }
@@ -29,24 +27,23 @@ class query{
     }
     // 链式Where条件带入
     where(where){
-        bt.log(where);
         this._where = null;
         // 条件字段的拼接
         let _whereArray = [];
         for(let _query in where){
-            _whereArray.push( `${_query} = ${(function(){
-                if(typeof where[_query] === 'Number'){
-                    return where[_query];
-                }else{
-                    return `'${where[_query]}'`;
-                }
+            _whereArray.push( `${_query} ${(function(){
+                return where[_query];
             })()}` )
         }
-        this._where = _whereArray.join(' and ');
+        this._where = ` where ${ _whereArray.join(' and ') }`;
         return this;
     }
     order(__order){
-        this._order = __order;
+        this._order = `order by ${__order}`;
+        return this;
+    }
+    limit(limit){
+        this._limit = `limit ${limit}`;
         return this;
     }
     // 链式快捷选择字段
@@ -66,16 +63,7 @@ class query{
                 type = item;
             }
         }
-        let _where = '',_order = '';
-        if(this._where){
-            _where = ` where ${this._where}`;
-        }
-        if(this._order){
-            _order = `order by ${this._order}`;
-        }
-        this._sql = `select ${fileds.join(',')} from ${this._table} ${_where} ${_order}`;
-        // 重置query参数
-        this.reset_query();
+        this._sql = `select ${fileds.join(',')} from ${this._table} ${this._where} ${this._order} ${this._limit}`;
         return this.get(this._sql,func,type);
     }
     // 输出最后一次执行的Sql

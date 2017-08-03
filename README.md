@@ -21,10 +21,11 @@
 3. 自定义DB配置选项
 4. 可配置controllers(路由)多层嵌套
 5. 配置的MVC目录名称
-6. 独立封装Mysql操作类
+6. 独立封装Mysql操作类,支持select/update/delete
 7. Query支持链式查询
 8. ejs模板引擎
 9. 引入全局utils工具
+10. 支持redis缓存
 
 ## 实例
  Contrller操作类demo
