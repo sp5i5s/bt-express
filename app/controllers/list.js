@@ -3,16 +3,20 @@ var api = require('../modles/index');
 
 class list extends think{
     index(){
-        db.execute.table('clound_news').where({id : 43,name :'ts'}).update({title : 'ttt',id : 50},(result)=>{
-            bt.log(result);
-        })
-        // api.list((result)=>{
-        //     this.render('index/list', {list : result});
-        // });
+        this.oc(function *(){
+            let result = yield api.list();
+            this.render('index/list', {list : result});
+        },this);
+    }
+    get_list(){
+        return new Promise(function(res){
+            api.list((result)=>{
+                res(result);
+            });
+        });
     }
     info(){
         api.info(this._get.id,(result)=>{
-            //bt.log(db.query.lastsql)
             this.render('index/info',{info : result});
         });
     }
