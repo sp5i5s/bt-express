@@ -1,9 +1,14 @@
 // System基类，用于接管用户的请求作用域
 var querystring = require('querystring');
+var system_oc = require('./oc');
 
 class think{
     constructor(){
         
+    }
+    // Generator 同步绑定
+    oc(fn,self){
+        system_oc(fn,self);
     }
 
     get request(){
