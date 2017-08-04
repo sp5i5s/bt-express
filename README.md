@@ -31,7 +31,7 @@
 12. 支持log4日志
 
 ## 实例
- Contrller操作类demo
+ Contrller
 ```
  // 引入系统超类
 var think = require( _config.think );
@@ -56,7 +56,7 @@ class index extends think{
 }
 module.exports = index;
 ```
-Model操作类demo
+Model
 ```
 var api = function(){};
 api.list = function(func){
@@ -77,6 +77,18 @@ api.info = function(id,func){
 }
 module.exports = api; 
 ```
+async/await同步,需要Promise支持
+```
+(async ()=>{
+            let result = await api.list();
+            this.render('index/list', {list : result});
+        })();
+或
+  this.oc(function *(){
+             let result = yield api.list();
+             this.render('index/list', {list : result});
+         },this);
+```
 Views ejs模板引擎
 ```
  <ol class="news">
@@ -84,4 +96,14 @@ Views ejs模板引擎
             <li><a href="list/info?id=<%= info.id%>"><%= info.school_name%></a></li>
         <% })%>
  </ol>
+```
+redis(在全局范围内调用,配置app/config)
+```
+redis.get(key)
+redis.set(key , value);
+```
+log4(在全局范围内调用,文件保存在logs)
+```
+log.info(message)
+log.debug(message)
 ```
