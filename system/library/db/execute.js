@@ -66,11 +66,7 @@ class execute extends query{
             if(this._where){
                 _where = this._where;
             }
-<<<<<<< HEAD
-            let sql = db.query._sql =  `updat ${this._table} set ${value_array.join(',')} ${_where}`;
-=======
             let sql = db.query._sql =  `update ${this._table} set ${value_array.join(',')} ${_where}`;
->>>>>>> 6b3c7385ba293b6343548cc9d4c87b82c1792780
             _config.db.conn.query(sql, (error, result, fields) => {
                 result.status = result.affectedRows > 0 ? true : false;
                 func(result,error);

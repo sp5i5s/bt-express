@@ -64,6 +64,7 @@ class query{
             }
         }
         this._sql = `select ${fileds.join(',')} from ${this._table} ${this._where} ${this._order} ${this._limit}`;
+        this._table = this._where = this._order = this._limit = '';
         return this.get(this._sql,func,type);
     }
     // 输出最后一次执行的Sql

@@ -1,12 +1,15 @@
 var express = require('express');
 var ejs = require('ejs');
 var path = require('path');
+var bodyParser = require("body-parser");  
+
 
 var app = express();
 var favicon = require('express-favicon');
 
 // app Config
 app.use('/public',express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(function(req,res,next){
   var _send = res.send;
   var sent = false;

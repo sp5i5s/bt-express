@@ -1,11 +1,7 @@
 // System基类，用于接管用户的请求作用域
-var querystring = require('querystring');
 var system_oc = require('./oc');
 
 class think{
-    constructor(){
-        
-    }
     // Generator 同步绑定
     oc(fn,self){
         system_oc(fn,self);
@@ -18,24 +14,25 @@ class think{
     get response(){
         return response;
     }
-
+    // 页面渲染方法
     render(){
         return response.render( ...arguments );
     }
-
-    get _get(){
+    // 获取get数据
+    get get(){
         return request.query;
     }
-
-    _post(func){
-        let body = '';
-        request.on('data', function (chunk) {
-            body += chunk;
-        });
-        request.on('end', function () {
-            body = querystring.parse(body);
-            func(body);
-        })
+    // 获取post 数据 
+    get post(){
+        return request.body;
+    }
+    // 是否是post提交
+    get is_post(){
+        return request.route.methods.hasOwnProperty('post');
+    }
+    // 是否是get提交
+    get is_get(){
+        return request.route.methods.hasOwnProperty('get');
     }
 }
 

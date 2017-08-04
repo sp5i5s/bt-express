@@ -5,20 +5,10 @@ class index extends think{
         super();
     }
     index(){
-        let data = [
-            {title : '张三'},
-            {title : '李四'}
-        ]
-        db.execute.table('cloud_news').save(data,(result)=>{
-            // bt.log(db.execute.insertId)
-            // bt.log(db.query.lastsql);
-        });
         this.render('index/index');
     }
-    post(){
-        this._post(function(post){
-            response.send(post.name);
-        })
+    posttj(){
+        response.send( JSON.stringify(this.post ));
     }
     get(){
         response.send('index get');
