@@ -34,6 +34,14 @@ class think{
     get is_get(){
         return request.route.methods.hasOwnProperty('get');
     }
+    // 是否是put提交
+    get is_put(){
+        return request.route.methods.hasOwnProperty('put');
+    }
+    // 是否是delete提交
+    get is_delete(){
+        return request.route.methods.hasOwnProperty('delete');
+    }
 }
 
 module.exports = think;

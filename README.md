@@ -10,6 +10,7 @@
 │   ├── modules                 #数据层目录
 │   ├── views                   #视图层目录
 ├── public                      #资源目录,scss,js,jpg
+├── logs                        #日志目录
 └── system                      #bt-express框架目录
 ```
     
@@ -26,6 +27,8 @@
 8. ejs模板引擎
 9. 引入全局utils工具
 10. 支持redis缓存
+11. 支持async/await同步
+12. 支持log4日志
 
 ## 实例
  Contrller操作类demo
