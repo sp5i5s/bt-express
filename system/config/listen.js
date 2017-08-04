@@ -20,6 +20,10 @@ app.use(function(req,res,next){
     }
     next();
 });
+app.use(function(req, res, next){
+    res.setHeader('X-Powered-By', 'bt-express');
+    next();
+});
 // app.engine('x.html', ejs.__express);
 // app.use(favicon( path.resolve('public/favicon.ico') )); 
 app.set('view engine', 'ejs');

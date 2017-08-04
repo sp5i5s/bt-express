@@ -1,6 +1,7 @@
 // 新闻API模拟
 
 var api = function(){};
+
 api.list = function(func){
     // 在配置完DB参数后，将自动赋予全局db.query操作
     // db.query支持链式查询
@@ -14,6 +15,7 @@ api.list = function(func){
         })
     });
 };
+
 api.info = function(id,func){
     db.query.table('cloud_news').where({id : `= ${id}`}).select((result)=>{
         func(result);

@@ -5,9 +5,9 @@ var route = require("./route");
 // 引入mysql
 var db = require('./library/db/build');
 // 引入redis
-var redis = require('./library/redis/build');
+require('./library/redis/build');
 // 引入log4
-var logger = require('./library/log4/build');
+require('./library/log4/build');
 // 引入工具类
 require('./utils');
 // 引入BT工具类
