@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --inline",
     "build": "webpack -p",
-    "watch:css": "onchange 'public/*.scss' -- webpack",
+    "watch:css": "onchange 'public/site.scss' -- webpack",
     "watch": "onchange 'app/*/*.js' -- node app.js"
   },
   "author": "",
