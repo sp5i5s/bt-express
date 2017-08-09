@@ -1,18 +1,47 @@
 <% include ../common/header %>
 <div id="main">
+	<% list.forEach(function(info){ %>
 	<section class="content">
-		<img src="/public/images/news/163937693269.jpg" />
+		<img src="<%= info.img%>" />
 		<div class="title">
-			<h2>当消费升级遇到中国大妈</h2>
-			<p>消费升级的意义，在于让你用更多的钱，自以为省去了时间买到了更高级的东西</p>
+			<h2><a href="index/info?id=<%= info.id%>"><%= info.title%></a></h2>
+			<p><%= info.introduce%></p>
 		</div>
 	</section>
 	<div class="clearfix"></div>
-	<section class="content">
-		<img src="/public/images/news/163937693269.jpg" />
-		<div class="title">
-			<h2>当消费升级遇到中国大妈</h2>
-			<p>消费升级的意义，在于让你用更多的钱，自以为省去了时间买到了更高级的东西</p>
-		</div>
-	</section>
+	<% })%>
 <% include ../common/footer %>
+<script>
+	let page_count = Math.ceil(<%= count%> / 10),
+		page = 0;
+
+	$(window).scroll(function(){
+	　　var scrollTop = $(this).scrollTop();
+	　　var scrollHeight = $(document).height();
+	　　var windowHeight = $(this).height();
+	　　if(scrollTop + windowHeight == scrollHeight){
+			if( page < page_count){
+				let args = {
+					url : '/index/page',
+					data : {
+						page : ++ page
+					}
+				}
+				bt.https.post(args,function(result){
+					let html = '';
+					for(let item of result.data){
+						html += `<section class="content">
+									<img src="${item.img}" />
+									<div class="title">
+										<h2><a href="index/info?id=${item.id}">${item.title}</a></h2>
+										<p>${item.introduce}</p>
+									</div>
+								</section>
+								<div class="clearfix"></div>`;
+					}
+					$('#main').append(html);
+				})
+			}
+	　　}
+	});
+</script>

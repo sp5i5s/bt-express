@@ -1,15 +1,18 @@
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    site : './public/site.scss'
+    //site : './public/site.scss'
+    site : './site.js',
+    vendors : './public/assets/js/jquery.min'
   },
   output: {
     path: resolve(__dirname, 'public'),
-    //publicPath : '/dist/',
-    filename: '[name].css'
+    publicPath : '/public/',
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -24,6 +27,7 @@ module.exports = {
   plugins: [
     // new HtmlWebpackPlugin({template: './src/template/index.html'}),
     new ExtractTextPlugin({filename: '[name].css',allChunks: true}), 
+    new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}})
   ],
   devServer: {
     port: 8100,

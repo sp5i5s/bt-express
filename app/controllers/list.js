@@ -3,17 +3,20 @@ var api = require('../modles/index');
 
 class list extends think{
     index(){
-        (async ()=>{
-            let result = await api.list();
+        this.oc(function *(){
+            let result = yield api.list();
             this.render('index/list', {list : result});
-        })();
-        // this.oc(function *(){
-        //     let result = yield api.list();
-        //     this.render('index/list', {list : result});
-        // },this);
+        },this);
+    }
+    get_list(){
+        return new Promise(function(res){
+            api.list((result)=>{
+                res(result);
+            });
+        });//18956330582
     }
     info(){
-        api.info(this.get.id,(result)=>{
+        api.info(this._get.id,(result)=>{
             this.render('index/info',{info : result});
         });
     }

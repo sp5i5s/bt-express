@@ -42,6 +42,10 @@ class query{
         this._order = `order by ${__order}`;
         return this;
     }
+    count(func){
+        this._count = true;
+        return this.select(func,'info');
+    }
     limit(limit){
         this._limit = `limit ${limit}`;
         return this;
@@ -63,8 +67,11 @@ class query{
                 type = item;
             }
         }
+        if(this._count){
+            fileds = ['count(1) as count'];
+        }
         this._sql = `select ${fileds.join(',')} from ${this._table} ${this._where} ${this._order} ${this._limit}`;
-        this._table = this._where = this._order = this._limit = '';
+        this._table = this._where = this._order = this._limit  = this._count = '';
         return this.get(this._sql,func,type);
     }
     // 输出最后一次执行的Sql
