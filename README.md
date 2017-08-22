@@ -50,9 +50,8 @@ class index extends think{
     // post action
     post(){
         // 利用系统方法获取post
-        this._post(function(post){
-            response.send(post.name);
-        })
+        let data = this.post;
+        response.send(data);
     }
 }
 module.exports = index;
