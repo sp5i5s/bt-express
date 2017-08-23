@@ -13,7 +13,7 @@ class list extends think{
             api.list((result)=>{
                 res(result);
             });
-        });//18956330582
+        });
     }
     info(){
         api.info(this._get.id,(result)=>{

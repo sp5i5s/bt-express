@@ -1,15 +1,19 @@
 var express = require('express');
 var ejs = require('ejs');
 var path = require('path');
-var bodyParser = require("body-parser");  
+var bodyParser = require("body-parser");
+var session = require('express-session');
 
 
 var app = express();
 var favicon = require('express-favicon');
 
+app.locals.user = {name : 'brandon'};
 // app Config
 app.use('/public',express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({secret: 'bt-express',resave: false,saveUninitialized: true}));
+
 app.use(function(req,res,next){
   var _send = res.send;
   var sent = false;

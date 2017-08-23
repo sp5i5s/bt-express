@@ -15,6 +15,8 @@ class index extends think{
     }
     info(){
         (async ()=>{
+            // 设置session
+            //this.request.session.userid = 1;
             let result = await api.info(this.get.id);
             this.render('index/info', {info : result});
         })();
