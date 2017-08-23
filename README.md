@@ -13,8 +13,9 @@
 ├── logs                        #日志目录
 └── system                      #bt-express框架目录
 ```
-    
-
+## 演示
+<http://bt-express.5i5s.net:8080/>
+ 
 ## 特性
 
 1. OOP的编码方式
@@ -49,9 +50,8 @@ class index extends think{
     // post action
     post(){
         // 利用系统方法获取post
-        this._post(function(post){
-            response.send(post.name);
-        })
+        let data = this.post;
+        response.send(data);
     }
 }
 module.exports = index;
